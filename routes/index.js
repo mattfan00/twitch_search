@@ -22,7 +22,7 @@ router.get("/channels", checkCache, async (req, res) => {
       })
     })
 
-  let channel = results.data.channels[0]
+  let channel = results.data.channels[0];
 
   // If no channels are returned from the search or the channel name
   // isn't the top search result, then the channel doesn't exist
@@ -36,15 +36,15 @@ router.get("/channels", checkCache, async (req, res) => {
   const newUser = await User.create({
     username: channel.display_name,
     followerCount: channel.followers
-  })
+  });
 
   // Clear cache entry after five minutes
-  const EXPIRE_TIME = 5 * 60 * 1000
+  const EXPIRE_TIME = 5 * 60 * 1000;
   setTimeout(async () => {
     newUser.destroy();
-  }, EXPIRE_TIME)
+  }, EXPIRE_TIME);
 
-  res.json(newUser.toJSON())
+  res.json(newUser.toJSON());
 });
 
-module.exports = router
+module.exports = router;

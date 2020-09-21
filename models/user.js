@@ -1,5 +1,5 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("sqlite::memory:");
+const { DataTypes } = require("sequelize");
+const sequelize = require("../dbConfig");
 
 const User = sequelize.define('User', {
   username: {
@@ -10,8 +10,6 @@ const User = sequelize.define('User', {
     type: DataTypes.INTEGER,
     allowNull: false
   }
-}, {
-  // Other model options go here
 });
 
 (async () => {

@@ -7,7 +7,7 @@ async function checkCache(req, res, next) {
   if (!channelName || channelName == "") {
     return res.status(400).json({
       error: {"message": "No channel name provided"}
-    })
+    });
   }
 
   const foundUser = await User.findOne({
@@ -19,11 +19,9 @@ async function checkCache(req, res, next) {
   });
 
   // Check if the user is already cached
-  if (foundUser != null) {
-    console.log("its in the database");
+  if (foundUser != null) { // Get user from the database
     return res.json(foundUser);
-  } else {
-    console.log("call api");
+  } else { // Call API to get user
     next();
   } 
 }
